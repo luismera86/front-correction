@@ -1,11 +1,13 @@
 import { Box, Container, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Stack, TextField, Typography } from '@mui/material'
+import { useForm, useNote } from '@/hooks'
 
 import { Evaluation } from '@/components'
-import { useForm } from '@/hooks'
+import { useState } from 'react';
 
 export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
+  const {note, result, evaluationNote} = useNote()
 	const { formInputState, handleInputChange, tutorName, studentName, commission } = useForm({
     tutorName: '',
     studentName: '',
@@ -64,7 +66,8 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
             <p>- Utilizar funciones para realizar esas operaciones.</p>
           </Grid>
 				</Grid>
-				<Evaluation evaluation='dddd' evaluations={3} evaluationValue={e} />
+				<Evaluation evaluation='La estructura HTML está completa y ejecutada con buenas prácticas o utiliza el el starter template de Bootstrap u otro framework para el uso adecuado de HTML5 *. El archivo JS está correctamente referenciado en el HTML. 	
+' evaluations={3} evaluationValue={evaluationNote} />
         
       </Paper>
     </Container>

@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import {
   FormControl,
   Grid,
@@ -12,12 +13,12 @@ import {
 export interface EvaluationInterface {
   evaluation: string
   evaluations: number // Ingresar la cantidad de evaluaciones que se van a realizar
-  evaluationValue: () => void
+  evaluationValue: (value: number) => void
 }
 
 const Evaluation: React.FC<EvaluationInterface> = ({ evaluation, evaluations, evaluationValue }) => {
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
-    console.log(e.target.value)
+  evaluationValue(Number(e.target.value))
   }
   return (
     <Grid container sx={{ mt: 3, height: 200 }}>
