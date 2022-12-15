@@ -16,7 +16,7 @@ const NavBar: React.FC<NavBarInterface> = () => {
             <NavLink style={{ textDecoration: 'none' }} to='/js'>
               <Button variant='outlined'>JavaScript</Button>
             </NavLink>
-            <NavLink style={{ textDecoration: 'none' }} to='/'>
+            <NavLink style={{ textDecoration: 'none' }} to='/react'>
               <Button variant='outlined'>React Js</Button>
             </NavLink>
           </Stack>
