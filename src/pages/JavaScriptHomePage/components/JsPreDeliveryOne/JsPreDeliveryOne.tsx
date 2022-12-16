@@ -2,6 +2,7 @@ import { Box, Container, FormControl, Grid, InputLabel, MenuItem, Paper, Select,
 import { useForm, useNote } from '@/hooks'
 
 import { Evaluation } from '@/components'
+import { jsDeliveryOne } from '@/data';
 import { useState } from 'react';
 
 export interface JsPreDeliveryOneInterface {}
@@ -66,8 +67,7 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
             <p>- Utilizar funciones para realizar esas operaciones.</p>
           </Grid>
 				</Grid>
-				<Evaluation evaluation='La estructura HTML está completa y ejecutada con buenas prácticas o utiliza el el starter template de Bootstrap u otro framework para el uso adecuado de HTML5 *. El archivo JS está correctamente referenciado en el HTML. 	
-' evaluations={3} evaluationValue={evaluationNote} />
+        <Evaluation title={jsDeliveryOne.evaluationOne.title} evaluation={jsDeliveryOne.evaluationOne.evaluation} evaluations={3} evaluationValue={evaluationNote} />
         
       </Paper>
     </Container>
