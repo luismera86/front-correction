@@ -1,31 +1,52 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 export const useNote = () => {
-  const [note, setNote] = useState(0)
+  const [noteOne, setNoteOne] = useState(0)
+  const [noteTow, setNoteTow] = useState(0)
+  const [noteThree, setNoteThree] = useState(0)
+  const [noteFour, setNoteFour] = useState(0)
+  const [noteFive, setNoteFive] = useState(0)
   const [result, setResult] = useState('')
-useEffect(() => {
-  calcNote()
-}, [note])
+  useEffect(() => {
+    calcNote()
+  }, [noteOne, noteTow, noteThree, noteFour, noteFive])
 
-
+  // Realiza el cálculo del resultado de la entrega en base al puntaje obtenido
   const calcNote = () => {
-    if (note >= 80) {
+    const notes = noteOne + noteTow + noteThree + noteFour + noteFive
+    console.log(notes)
+    if (notes >= 80) {
       setResult('Optimo')
-    } else if (note < 80 && note > 50) {
+    } else if (notes > 50 && notes < 80) {
       setResult('Correcto')
-    } else {
+    } else if (notes <= 50) {
       setResult('Bajo')
     }
   }
 
-  const evaluationNote = (value: number) => {
-    setNote(note + value)
+  // Setea el valor por cada evaluación 
+  const evaluationNoteOne = (value: number) => {
+    setNoteOne(value)
   }
-  
-  
+  const evaluationNoteTow = (value: number) => {
+    setNoteTow(value)
+  }
+  const evaluationNoteThree = (value: number) => {
+    setNoteThree(value)
+  }
+  const evaluationNoteFour = (value: number) => {
+    setNoteFour(value)
+  }
+  const evaluationNoteFive = (value: number) => {
+    setNoteFive(value)
+  }
+
   return {
     result,
-    evaluationNote,
-    note
+    evaluationNoteOne,
+    evaluationNoteTow,
+    evaluationNoteThree,
+    evaluationNoteFour,
+    evaluationNoteFive,
   }
 }

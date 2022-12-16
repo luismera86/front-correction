@@ -10,26 +10,26 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
 
 import { ThemePalette } from '@/models'
 
 export interface EvaluationInterface {
-  title: string
-  evaluation: string
-  evaluations: number // Ingresar la cantidad de evaluaciones que se van a realizar
-  evaluationValue: (value: number) => void
+  title: string // Título de la evaluación
+  evaluation: string // Recibe el texto con los detalles a evaluar
+  evaluations: number // Ingresar la cantidad de evaluaciones que se van a realizar, en base a eso determina el puntaje de cada evaluación que realiza
+  evaluationValue: (value: number) => void // Recibe la función de acuerdo al número de evaluación pra setear la nota en el custom hook useNote
 }
 
+// una función que no retorna nada y pasa por un parámetros paseado el valor del select, que luego es usado en el custom hook useNote
 const Evaluation: React.FC<EvaluationInterface> = ({ evaluation, evaluations, evaluationValue, title }) => {
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     evaluationValue(Number(e.target.value))
   }
   return (
-    <Container sx={{ p: 2 }} >
-      <Paper variant='outlined' sx={{ border: 1, borderColor: ThemePalette.PRIMARY, display: 'flex' }} >
-        <Grid container sx={{ mt: 3, height: 200 }} >
-          <Grid item sx={{ p: 1 }}>
+    <Container sx={{ p: 2 }}>
+      <Paper >
+        <Grid container>
+          <Grid item xs={6} p={3}>
             <Typography variant='h6' sx={{ mb: 1, fontWeight: 'bold' }}>
               {title}
             </Typography>
@@ -49,10 +49,8 @@ const Evaluation: React.FC<EvaluationInterface> = ({ evaluation, evaluations, ev
               </Select>
             </FormControl>
           </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={6} sx={{ p: 1 }}>
-            <TextField label='Comentario' multiline rows={8} defaultValue='' fullWidth />
+          <Grid item xs={6} p={3}>
+            <TextField label='Comentario' multiline rows={10} defaultValue='' fullWidth />
           </Grid>
         </Grid>
       </Paper>
