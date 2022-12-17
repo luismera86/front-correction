@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from '@/hooks'
 
 export interface FormInterface {}
-// TODO hacer que se guarde el tutor, curso y comisión en el localstorage para que no tenga que volver a escribirlo
+
 const Form: React.FC<FormInterface> = () => {
   const [course, setCourse] = useState('')
   const { handleInputChange, tutorName, studentName, commission } = useForm({
