@@ -14,7 +14,6 @@ export const useNote = () => {
   // Realiza el cálculo del resultado de la entrega en base al puntaje obtenido
   const calcNote = () => {
     const notes = noteOne + noteTow + noteThree + noteFour + noteFive
-    console.log(notes)
     if (notes >= 80) {
       setResult('Optimo')
     } else if (notes > 50 && notes < 80) {

@@ -1,21 +1,19 @@
-import { Box, Container, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Container, Grid, Paper, Typography } from '@mui/material'
 import { Evaluation, Feedback, Form } from '@/components'
 
 import { jsDeliveryOne } from '@/data'
 import { useNote } from '@/hooks'
 
+// TODO Instalar redux para armar todo el state con los datos para guardar en la base de datos de mongo
 export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
 
-  const e = () => {}
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
         <Form />
-
-        // TODO Instalar redux para armar todo el state con los datos para guardar en la base de datos de mongo 
         <Container>
           <Grid container>
             <Grid item>
@@ -49,10 +47,9 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
           evaluations={3}
           evaluationValue={evaluationNoteThree}
         />
-
-        <Grid item>
-          <Typography>{result}</Typography>
-        </Grid>
+        <Container sx={{ mb: 3, mt: 2 }}>
+          <Typography variant='h5'>Resultado: {result}</Typography>
+        </Container>
         <Feedback />
       </Paper>
     </Container>
