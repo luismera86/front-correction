@@ -4,7 +4,6 @@ import { Evaluation, Feedback, Form } from '@/components'
 import { jsDeliveryOne } from '@/data'
 import { useNote } from '@/hooks'
 
-// TODO Instalar redux para armar todo el state con los datos para guardar en la base de datos de mongo
 export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
