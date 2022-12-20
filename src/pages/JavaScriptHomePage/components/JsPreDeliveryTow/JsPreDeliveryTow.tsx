@@ -7,7 +7,7 @@ import { useNote } from '@/hooks'
 export interface JsPreDeliveryTowInterface {}
 
 const JsPreDeliveryTow: React.FC<JsPreDeliveryTowInterface> = () => {
-  const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
+  const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree, evaluationNoteFour, evaluationNoteFive } = useNote()
 
   const { evaluationOne, evaluationTow, evaluationThree, evaluationFour, evaluationFive } = jsDeliveryTow
 
@@ -65,13 +65,13 @@ const JsPreDeliveryTow: React.FC<JsPreDeliveryTowInterface> = () => {
           title={evaluationFour.title}
           evaluation={evaluationFour.evaluation}
           evaluations={5}
-          evaluationValue={evaluationNoteThree}
+          evaluationValue={evaluationNoteFour}
         />
         <Evaluation
           title={evaluationFive.title}
           evaluation={evaluationFive.evaluation}
           evaluations={5}
-          evaluationValue={evaluationNoteThree}
+          evaluationValue={evaluationNoteFive}
         />
         <Container sx={{ mb: 3, mt: 2 }}>
           <Typography variant='h5'>Resultado: {result}</Typography>
