@@ -5,11 +5,26 @@ import { AppDispatch } from '../app'
 import axios from 'axios'
 
 const initialState: Delivery = {
-  commentOne: '',
-  commentTow: '',
-  commentThree: '',
-  commentFour: '',
-  commentFive: '',
+  evaluationOne: {
+    comment: '',
+    status: '',
+  },
+  evaluationTow: {
+    comment: '',
+    status: '',
+  },
+  evaluationThree: {
+    comment: '',
+    status: '',
+  },
+  evaluationFour: {
+    comment: '',
+    status: '',
+  },
+  evaluationFive: {
+    comment: '',
+    status: '',
+  },
   feedback: '',
   student: {
     commission: 0,
@@ -30,24 +45,24 @@ const dataSlice = createSlice({
       state = action.payload
       return state
     },
-    setCommentOne: (state, action: PayloadAction<string>) => {
-      state.commentOne = action.payload
+    setEvaluationOne: (state, action) => {
+      state.evaluationOne = action.payload
       return state
     },
-    setCommentTow: (state, action: PayloadAction<string>) => {
-      state.commentTow = action.payload
+    setEvaluationTow: (state, action: PayloadAction<{ comment: string; status: string }>) => {
+      state.evaluationTow = action.payload
       return state
     },
-    setCommentThree: (state, action: PayloadAction<string>) => {
-      state.commentThree = action.payload
+    setEvaluationThree: (state, action: PayloadAction<{ comment: string; status: string }>) => {
+      state.evaluationThree = action.payload
       return state
     },
-    setCommentFour: (state, action: PayloadAction<string>) => {
-      state.commentFour = action.payload
+    setEvaluationFour: (state, action: PayloadAction<{ comment: string; status: string }>) => {
+      state.evaluationFour = action.payload
       return state
     },
-    setCommentFive: (state, action: PayloadAction<string>) => {
-      state.commentFive = action.payload
+    setEvaluationFive: (state, action: PayloadAction<{ comment: string; status: string }>) => {
+      state.evaluationFive = action.payload
       return state
     },
     setFeedback: (state, action: PayloadAction<string>) => {
@@ -71,11 +86,11 @@ const dataSlice = createSlice({
 
 export const {
   setData,
-  setCommentFive,
-  setCommentFour,
-  setCommentOne,
-  setCommentThree,
-  setCommentTow,
+  setEvaluationOne,
+  setEvaluationTow,
+  setEvaluationThree,
+  setEvaluationFour,
+  setEvaluationFive,
   setFeedback,
   setPreDeliveryNumber,
   setStudent,

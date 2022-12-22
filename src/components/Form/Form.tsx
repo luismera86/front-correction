@@ -10,38 +10,58 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/redux'
+import { useEffect, useState } from 'react'
 
+import { setStudent } from '@/redux/slices/dataSlice'
 import { useForm } from '@/hooks'
 
 export interface FormInterface {}
 
 const Form: React.FC<FormInterface> = () => {
+  const dispatch = useAppDispatch()
+  const studentSlice = useAppSelector((state) => state.dataSlice)
   const [course, setCourse] = useState('')
   const { handleInputChange, tutorName, studentName, commission } = useForm({
     tutorName: '',
     studentName: '',
-    commission: '',
+    commission: 0,
   })
 
- 
+  useEffect(() => {
+    dispatch(
+      setStudent({
+        ...studentSlice.student,
+        commission: commission,
+        name: studentName,
+        tutor: tutorName,
+      })
+    )
+  }, [tutorName, studentName, commission])
+
   useEffect(() => {
     if (localStorage.getItem('tutorName') === null) {
       localStorage.setItem('tutorName', '')
-    }
-    if (localStorage.getItem('commission') === null) {
+    } else if (localStorage.getItem('commission') === null) {
       localStorage.setItem('commission', '')
+    } else if (localStorage.getItem('studentName') === null) {
+      localStorage.setItem('studentName', '')
     }
-   
+
     const course = localStorage.getItem('course')
     setCourse(course!)
   }, [])
-  
 
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
-    // Todo cuando se implemente redux modificar para que se aplique directamente en el reducer
-    setCourse(e.target.value)
-    localStorage.setItem('course', e.target.value)
+    const course = e.target.value
+
+    localStorage.setItem('course', course)
+    dispatch(
+      setStudent({
+        ...studentSlice.student,
+        course,
+      })
+    )
   }
 
   return (
@@ -52,7 +72,7 @@ const Form: React.FC<FormInterface> = () => {
           <TextField
             onChange={handleInputChange}
             name='studentName'
-            value={studentName}
+            value={studentName === '' ? localStorage.getItem('studentName') : studentName}
             type='text'
             label='Alumno'
             placeholder='Nombre y apellido del alumno'
@@ -70,7 +90,7 @@ const Form: React.FC<FormInterface> = () => {
           <TextField
             onChange={handleInputChange}
             name='commission'
-            value={commission === '' ? localStorage.getItem('commission') : commission}
+            value={commission === 0 ? localStorage.getItem('commission') : commission}
             type='number'
             label='Comisión'
             placeholder='N° de comisión'
@@ -84,7 +104,6 @@ const Form: React.FC<FormInterface> = () => {
               label='Estado'
               onChange={onChangeSelect}
               value={course ? course : ''}
-
             >
               <MenuItem value='JavaScript'>JavaScript</MenuItem>
               <MenuItem value='React Js'>React Js</MenuItem>

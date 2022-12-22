@@ -8,7 +8,8 @@ export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
-
+  // Todo hacer un useEffect que haga un dispatch con el numero de entrega 
+  
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
@@ -29,18 +30,21 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
           </Grid>
         </Container>
         <Evaluation
+          evaluationNumber={1}
           title={jsDeliveryOne.evaluationOne.title}
           evaluation={jsDeliveryOne.evaluationOne.evaluation}
           evaluations={3}
           evaluationValue={evaluationNoteOne}
         />
         <Evaluation
+          evaluationNumber={2}
           title={jsDeliveryOne.evaluationTow.title}
           evaluation={jsDeliveryOne.evaluationTow.evaluation}
           evaluations={3}
           evaluationValue={evaluationNoteTow}
         />
         <Evaluation
+          evaluationNumber={3}
           title={jsDeliveryOne.evaluationThree.title}
           evaluation={jsDeliveryOne.evaluationThree.evaluation}
           evaluations={3}
