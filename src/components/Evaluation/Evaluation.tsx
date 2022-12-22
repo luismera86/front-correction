@@ -10,17 +10,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import {
-  setEvaluationFive,
-  setEvaluationFour,
-  setEvaluationOne,
-  setEvaluationThree,
-  setEvaluationTow,
-} from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
-import { useEffect, useState } from 'react'
+import { useCalcPoints, useComments } from '@/hooks'
 
-import { useCalcPoints } from '@/hooks'
+import { useEffect } from 'react'
 
 export interface EvaluationInterface {
   title: string // Título de la evaluación
@@ -41,12 +34,11 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   const dispatch = useAppDispatch()
   const student = useAppSelector((state) => state.dataSlice.student.name)
 
-  const [comment, setComment] = useState('')
+  // const [comment, setComment] = useState('')
   const { points, clacPoints } = useCalcPoints()
+  const {comment, setComment, setComments} = useComments(evaluationNumber)
 
-  useEffect(() => {
-    evaluationValue(points)
-  }, [points])
+  
   
 
   useEffect(() => {
@@ -62,6 +54,14 @@ const Evaluation: React.FC<EvaluationInterface> = ({
     }
   }, [])
 
+  useEffect(() => {
+    evaluationValue(points)
+  }, [points])
+  
+  useEffect(() => {
+    setComments(title)
+  }, [comment])
+
   
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     const value = e.target.value
@@ -71,60 +71,7 @@ const Evaluation: React.FC<EvaluationInterface> = ({
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value)
-    switch (evaluationNumber) {
-      case 1:
-        dispatch(
-          setEvaluationOne({
-            comment,
-          })
-        )
-        localStorage.setItem(title, e.target.value)
-
-        break
-      case 2:
-        dispatch(
-          setEvaluationTow({
-            comment,
-            status: '',
-          })
-        )
-        localStorage.setItem(title, e.target.value)
-
-        break
-      case 3:
-        dispatch(
-          setEvaluationThree({
-            comment,
-            status: '',
-          })
-        )
-        localStorage.setItem(title, e.target.value)
-
-        break
-      case 4:
-        dispatch(
-          setEvaluationFour({
-            comment,
-            status: '',
-          })
-        )
-        localStorage.setItem(title, e.target.value)
-
-        break
-      case 5:
-        dispatch(
-          setEvaluationFive({
-            comment,
-            status: '',
-          })
-        )
-        localStorage.setItem(title, e.target.value)
-
-        break
-
-      default:
-        break
-    }
+   
   }
 
   return (
