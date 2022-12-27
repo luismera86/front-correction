@@ -81,6 +81,11 @@ const dataSlice = createSlice({
       state.isLoading = action.payload
       return state
     },
+    setResults: (state, action: PayloadAction<string>) => {
+      state.result = action.payload
+      return state
+    },
+    
   },
 })
 
@@ -95,6 +100,7 @@ export const {
   setPreDeliveryNumber,
   setStudent,
   setIsLoading,
+  setResults
 } = dataSlice.actions
 
 export default dataSlice.reducer
