@@ -10,10 +10,17 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import {
+  setEvaluationFive,
+  setEvaluationFour,
+  setEvaluationOne,
+  setEvaluationThree,
+  setEvaluationTow,
+  setStudent,
+} from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 import { useCalcPoints, useComments } from '@/hooks'
-
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export interface EvaluationInterface {
   title: string // Título de la evaluación
@@ -32,46 +39,53 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   evaluationNumber,
 }) => {
   const dispatch = useAppDispatch()
-  const student = useAppSelector((state) => state.dataSlice.student.name)
-
+  const student = useAppSelector((state) => state.dataSlice)
   // const [comment, setComment] = useState('')
   const { points, clacPoints } = useCalcPoints()
-  const {comment, setComment, setComments} = useComments(evaluationNumber)
-
-  
-  
+  const { comment, setComment, setComments } = useComments(evaluationNumber)
 
   useEffect(() => {
     const local = localStorage.getItem(title)
-    if (local !== null) {
-      setComment(local)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (student === '') {
+    if (local === null) {
       localStorage.setItem(title, '')
     }
   }, [])
 
   useEffect(() => {
+    const local = localStorage.getItem(title)
+    if (local !== null) {
+      setComments(title, local)
+      setComment(local)
+    } else {
+      localStorage.setItem(title, '')
+      setComment('')
+    }
+  }, [])
+
+  useEffect(() => {
+    const local = localStorage.getItem(title)
+    if (local !== null) {
+      setComment(local)
+    } else {
+      localStorage.setItem(title, '')
+      setComment('')
+    }
+  }, [comment, student])
+
+  useEffect(() => {
     evaluationValue(points)
   }, [points])
-  
-  useEffect(() => {
-    setComments(title)
-  }, [comment])
 
-  
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     const value = e.target.value
     clacPoints(evaluations, value)
-    
   }
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value)
-   
+    const value = e.target.value
+
+    setComment(value)
+    setComments(title, value)
   }
 
   return (

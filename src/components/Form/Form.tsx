@@ -52,9 +52,11 @@ const Form: React.FC<FormInterface> = () => {
     const student = localStorage.getItem('studentName')
     dispatch(setStudent({
       ...studentSlice.student,
-      name: student!
+      name: student!,
+      commission: Number(localStorage.getItem('commission')!),
+      course: localStorage.getItem('course')!
     }))
-    console.log(studentSlice.student)
+    
     const course = localStorage.getItem('course')
     setCourse(course!)
   }, [])
