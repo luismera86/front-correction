@@ -10,24 +10,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import {
-  setEvaluationFive,
-  setEvaluationFour,
-  setEvaluationOne,
-  setEvaluationThree,
-  setEvaluationTow,
-  setStudent,
-} from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 import { useCalcPoints, useComments } from '@/hooks'
-import { useEffect, useState } from 'react'
 
+import { useEffect } from 'react'
+
+// TODO hacer que se pueda guardar en redux y local storage el estado de la evaluación si está realizado, incompleto o no realizado
+// ? Se podrá fragmentar más esté componente ? 
 export interface EvaluationInterface {
   title: string // Título de la evaluación
   evaluation: string // Recibe el texto con los detalles a evaluar
   evaluations: number // Ingresar la cantidad de evaluaciones que se van a realizar, en base a eso determina el puntaje de cada evaluación que realiza
   evaluationValue: (value: number) => void // Recibe la función de acuerdo al número de evaluación pra setear la nota en el custom hook useNote
-  evaluationNumber: number
+  evaluationNumber: number // número de evaluación de la consigna
 }
 
 // una función que no retorna nada y pasa por un parámetros paseado el valor del select, que luego es usado en el custom hook useNote
@@ -40,7 +35,6 @@ const Evaluation: React.FC<EvaluationInterface> = ({
 }) => {
   const dispatch = useAppDispatch()
   const student = useAppSelector((state) => state.dataSlice)
-  // const [comment, setComment] = useState('')
   const { points, clacPoints } = useCalcPoints()
   const { comment, setComment, setComments } = useComments(evaluationNumber)
 
@@ -79,6 +73,7 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     const value = e.target.value
     clacPoints(evaluations, value)
+    localStorage.setItem(evaluationNumber.toString(), value)
   }
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
