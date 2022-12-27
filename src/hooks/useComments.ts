@@ -11,57 +11,54 @@ import { useState } from 'react'
 
 export const useComments = (evaluationNumber: number) => {
   const [comment, setComment] = useState('')
+  const [status, setStatus] = useState('')
   const dispatch = useAppDispatch()
   // el title es el titulo de la evaluación que se está comentando
-  const setComments = (title: string, value: string) => {
+  const setComments = (title: string, value: string, status: string) => {
     switch (evaluationNumber) {
       case 1:
         dispatch(
           setEvaluationOne({
             comment: value,
+            status: status
           })
         )
-        localStorage.setItem(title, value)
 
         break
       case 2:
         dispatch(
           setEvaluationTow({
             comment: value,
-            status: '',
+            status: status,
           })
         )
-        localStorage.setItem(title, value)
 
         break
       case 3:
         dispatch(
           setEvaluationThree({
             comment: value,
-            status: '',
+            status: status,
           })
         )
-        localStorage.setItem(title, value)
 
         break
       case 4:
         dispatch(
           setEvaluationFour({
             comment: value,
-            status: '',
+            status: status,
           })
         )
-        localStorage.setItem(title, value)
 
         break
       case 5:
         dispatch(
           setEvaluationFive({
             comment: value,
-            status: '',
+            status: status,
           })
         )
-        localStorage.setItem(title, value)
 
         break
 
@@ -74,5 +71,7 @@ export const useComments = (evaluationNumber: number) => {
     comment,
     setComment,
     setComments,
+    status,
+    setStatus
   }
 }

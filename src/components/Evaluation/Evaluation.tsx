@@ -10,13 +10,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import { setData, setEvaluationOne } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 import { useCalcPoints, useComments } from '@/hooks'
 
 import { useEffect } from 'react'
 
-// TODO hacer que se pueda guardar en redux y local storage el estado de la evaluación si está realizado, incompleto o no realizado
-// ? Se podrá fragmentar más esté componente ? 
 export interface EvaluationInterface {
   title: string // Título de la evaluación
   evaluation: string // Recibe el texto con los detalles a evaluar
@@ -36,51 +35,36 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   const dispatch = useAppDispatch()
   const student = useAppSelector((state) => state.dataSlice)
   const { points, clacPoints } = useCalcPoints()
-  const { comment, setComment, setComments } = useComments(evaluationNumber)
+  const { comment, setComment, setComments, setStatus, status } = useComments(evaluationNumber)
 
-  useEffect(() => {
-    const local = localStorage.getItem(title)
-    if (local === null) {
-      localStorage.setItem(title, '')
-    }
-  }, [])
 
-  useEffect(() => {
-    const local = localStorage.getItem(title)
-    if (local !== null) {
-      setComments(title, local)
-      setComment(local)
-    } else {
-      localStorage.setItem(title, '')
-      setComment('')
-    }
-  }, [])
 
+
+  // Realiza render por cada ves que detecte que el estado global recibió un cambio 
   useEffect(() => {
-    const local = localStorage.getItem(title)
-    if (local !== null) {
-      setComment(local)
-    } else {
-      localStorage.setItem(title, '')
-      setComment('')
-    }
+    
+    
   }, [comment, student])
 
+  // Realiza re render cada ves que se modifica la nota y recibe un valor diferente el resultado
   useEffect(() => {
     evaluationValue(points)
   }, [points])
 
+
+
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     const value = e.target.value
+    setStatus(value)
     clacPoints(evaluations, value)
-    localStorage.setItem(evaluationNumber.toString(), value)
+    setComments(title, comment, value )
   }
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value
 
     setComment(value)
-    setComments(title, value)
+    setComments(title, value, status )
   }
 
   return (
@@ -99,7 +83,7 @@ const Evaluation: React.FC<EvaluationInterface> = ({
                 id='demo-simple-select'
                 label='Estado'
                 onChange={onChangeSelect}
-                defaultValue=''
+                value={status}
               >
                 <MenuItem value='Realizado'>Realizado</MenuItem>
                 <MenuItem value='Incompleto'>Incompleto</MenuItem>

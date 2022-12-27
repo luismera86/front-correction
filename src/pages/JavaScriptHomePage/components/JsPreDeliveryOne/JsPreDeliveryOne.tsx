@@ -2,14 +2,20 @@ import { Container, Grid, Paper } from '@mui/material'
 import { Evaluation, Feedback, Form, Result } from '@/components'
 
 import { jsDeliveryOne } from '@/data'
+import { setPreDeliveryNumber } from '@/redux/slices/dataSlice'
+import { useAppDispatch } from '@/redux'
+import { useEffect } from 'react'
 import { useNote } from '@/hooks'
 
 export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
+  const dispatch = useAppDispatch()
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
-  // Todo hacer un useEffect que haga un dispatch con el numero de entrega
-  // * Revisar en dataSlice que se pueda setear el número de entrega
+
+  useEffect(() => {
+    dispatch(setPreDeliveryNumber(1))
+  }, [])
 
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>

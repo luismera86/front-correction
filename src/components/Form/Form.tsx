@@ -1,19 +1,8 @@
-import {
-  Box,
-  Container,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Box, Container, SelectChangeEvent, Stack, TextField, Typography } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '@/redux'
-import { useEffect, useState } from 'react'
 
 import { setStudent } from '@/redux/slices/dataSlice'
+import { useEffect } from 'react'
 import { useForm } from '@/hooks'
 
 export interface FormInterface {}
@@ -21,11 +10,11 @@ export interface FormInterface {}
 const Form: React.FC<FormInterface> = () => {
   const dispatch = useAppDispatch()
   const studentSlice = useAppSelector((state) => state.dataSlice)
-  const [course, setCourse] = useState('')
-  const { handleInputChange, tutorName, studentName, commission } = useForm({
+  const { handleInputChange, tutorName, studentName, commission, course } = useForm({
     tutorName: '',
     studentName: '',
     commission: 0,
+    course: '',
   })
 
   useEffect(() => {
@@ -35,9 +24,10 @@ const Form: React.FC<FormInterface> = () => {
         commission: commission,
         name: studentName,
         tutor: tutorName,
+        course,
       })
     )
-  }, [tutorName, studentName, commission])
+  }, [tutorName, studentName, commission, course])
 
   useEffect(() => {
     if (localStorage.getItem('tutorName') === null) {
@@ -46,32 +36,19 @@ const Form: React.FC<FormInterface> = () => {
       localStorage.setItem('commission', '')
     } else if (localStorage.getItem('studentName') === null) {
       localStorage.setItem('studentName', '')
+    } else if (localStorage.getItem('course') === null) {
+      localStorage.setItem('course', '')
     }
 
-  
-    const student = localStorage.getItem('studentName')
-    dispatch(setStudent({
-      ...studentSlice.student,
-      name: student!,
-      commission: Number(localStorage.getItem('commission')!),
-      course: localStorage.getItem('course')!
-    }))
-    
-    const course = localStorage.getItem('course')
-    setCourse(course!)
-  }, [])
-
-  const onChangeSelect = (e: SelectChangeEvent<string>) => {
-    const course = e.target.value
-
-    localStorage.setItem('course', course)
     dispatch(
       setStudent({
         ...studentSlice.student,
-        course,
+        name: localStorage.getItem('studentName')!,
+        commission: Number(localStorage.getItem('commission')!),
+        course: localStorage.getItem('course')!,
       })
     )
-  }
+  }, [])
 
   return (
     <Container>
@@ -105,19 +82,15 @@ const Form: React.FC<FormInterface> = () => {
             placeholder='N° de comisión'
             variant='outlined'
           />
-          <FormControl fullWidth sx={{ mt: 2 }}>
-            <InputLabel id='demo-simple-select-label'>Curso</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              label='Estado'
-              onChange={onChangeSelect}
-              value={course ? course : ''}
-            >
-              <MenuItem value='JavaScript'>JavaScript</MenuItem>
-              <MenuItem value='React Js'>React Js</MenuItem>
-            </Select>
-          </FormControl>
+          <TextField
+            onChange={handleInputChange}
+            name='course'
+            value={course === '' ? localStorage.getItem('course') : course}
+            type='text'
+            label='Curso'
+            placeholder='Ingrese el curso como JavaScript, React Js, etc.'
+            variant='outlined'
+          />
         </Stack>
       </Box>
     </Container>

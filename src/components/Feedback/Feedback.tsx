@@ -13,17 +13,6 @@ const Feedback: React.FC<FeedbackInterface> = () => {
   const { feedback, calcFeedback, setFeedback } = useFeedback()
 
   useEffect(() => {
-    const local = localStorage.getItem('feedback')
-    if (local !== null) {
-      setFeedback(local)
-      setData({
-        ...student,
-        feedback: local,
-      })
-    }
-  }, [])
-
-  useEffect(() => {
     calcFeedback()
   }, [student])
 
@@ -36,7 +25,6 @@ const Feedback: React.FC<FeedbackInterface> = () => {
         feedback: value,
       })
     )
-    localStorage.setItem('feedback', value)
   }
 
   return (

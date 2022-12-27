@@ -45,7 +45,7 @@ const dataSlice = createSlice({
       state = action.payload
       return state
     },
-    setEvaluationOne: (state, action) => {
+    setEvaluationOne: (state, action: PayloadAction<{ comment: string; status: string }>) => {
       state.evaluationOne = action.payload
       return state
     },

@@ -11,6 +11,7 @@ export const useNote = () => {
   const [noteFour, setNoteFour] = useState(0)
   const [noteFive, setNoteFive] = useState(0)
   const [result, setResult] = useState('')
+
   useEffect(() => {
     calcNote()
   }, [noteOne, noteTow, noteThree, noteFour, noteFive])
