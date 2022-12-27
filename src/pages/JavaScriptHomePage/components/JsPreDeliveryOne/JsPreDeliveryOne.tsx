@@ -1,5 +1,5 @@
-import { Container, Grid, Paper, Typography } from '@mui/material'
-import { Evaluation, Feedback, Form } from '@/components'
+import { Container, Grid, Paper } from '@mui/material'
+import { Evaluation, Feedback, Form, Result } from '@/components'
 
 import { jsDeliveryOne } from '@/data'
 import { useNote } from '@/hooks'
@@ -8,8 +8,9 @@ export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
-  // Todo hacer un useEffect que haga un dispatch con el numero de entrega 
-  
+  // Todo hacer un useEffect que haga un dispatch con el numero de entrega
+  // * Revisar en dataSlice que se pueda setear el número de entrega
+
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
@@ -50,9 +51,7 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
           evaluations={3}
           evaluationValue={evaluationNoteThree}
         />
-        <Container sx={{ mb: 3, mt: 2 }}>
-          <Typography variant='h5'>Resultado: {result}</Typography>
-        </Container>
+        <Result result={result} />
         <Feedback />
       </Paper>
     </Container>
