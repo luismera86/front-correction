@@ -10,7 +10,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { setData, setEvaluationOne } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 import { useCalcPoints, useComments } from '@/hooks'
 
@@ -37,34 +36,26 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   const { points, clacPoints } = useCalcPoints()
   const { comment, setComment, setComments, setStatus, status } = useComments(evaluationNumber)
 
-
-
-
-  // Realiza render por cada ves que detecte que el estado global recibió un cambio 
-  useEffect(() => {
-    
-    
-  }, [comment, student])
+  // Realiza render por cada ves que detecte que el estado global recibió un cambio
+  useEffect(() => {}, [comment, student])
 
   // Realiza re render cada ves que se modifica la nota y recibe un valor diferente el resultado
   useEffect(() => {
     evaluationValue(points)
   }, [points])
 
-
-
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     const value = e.target.value
     setStatus(value)
     clacPoints(evaluations, value)
-    setComments(title, comment, value )
+    setComments(title, comment, value)
   }
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value
 
     setComment(value)
-    setComments(title, value, status )
+    setComments(title, value, status)
   }
 
   return (

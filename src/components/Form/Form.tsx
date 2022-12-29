@@ -1,47 +1,15 @@
-import { Box, Container, SelectChangeEvent, Stack, TextField, Typography } from '@mui/material'
+import { Box, Container, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { setStudent } from '@/redux/slices/dataSlice'
-import { useForm } from '@/hooks'
 
 export interface FormInterface {}
 
 const Form: React.FC<FormInterface> = () => {
   const dispatch = useAppDispatch()
   const studentSlice = useAppSelector((state) => state.dataSlice.student)
-  // const { handleInputChange, tutorName, studentName, commission, course } = useForm({
-  //   tutorName: '',
-  //   studentName: '',
-  //   commission: 0,
-  //   course: '',
-  // })
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('tutorName') === null) {
-  //     localStorage.setItem('tutorName', '')
-  //   } else if (localStorage.getItem('commission') === null) {
-  //     localStorage.setItem('commission', '')
-  //   } else if (localStorage.getItem('studentName') === null) {
-  //     localStorage.setItem('studentName', '')
-  //   } else if (localStorage.getItem('course') === null) {
-  //     localStorage.setItem('course', '')
-  //   }
-  
-  // }, [])
-  
-  // useEffect(() => {
-  //   dispatch(
-  //     setStudent({
-  //       ...studentSlice.student,
-  //       commission: commission,
-  //       name: studentName,
-  //       tutor: tutorName,
-  //       course,
-  //     })
-  //   )
-
-  // }, [tutorName, studentName, commission, course])
 
   useEffect(() => {
     dispatch(

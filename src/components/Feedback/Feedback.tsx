@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect } from 'react'
 import { Container, Paper, TextField } from '@mui/material'
-import { setData, setFeedbackSlice, setStudent } from '@/redux/slices/dataSlice'
+import { setData, setFeedbackSlice } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { useFeedback } from '@/hooks'
@@ -24,10 +24,6 @@ const Feedback: React.FC<FeedbackInterface> = () => {
   useEffect(() => {
     calcFeedback()
   }, [student])
-
-
-
- 
 
   const onChangeFeedback = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value

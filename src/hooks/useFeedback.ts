@@ -14,9 +14,8 @@ export const useFeedback = () => {
 
   useEffect(() => {
     calcFeedback()
-    
   }, [])
-  
+
   const { valueCorrect, valueLow, valueOptimum } = feedbacks
 
   const calcFeedback = () => {
@@ -44,6 +43,6 @@ export const useFeedback = () => {
   return {
     feedback,
     calcFeedback,
-    setFeedback
+    setFeedback,
   }
 }
