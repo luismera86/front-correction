@@ -33,7 +33,7 @@ const initialState: Delivery = {
     tutor: '',
   },
   preDeliveryNumber: 0,
-  result: '',
+  result: 'Bajo',
   isLoading: true,
 }
 
@@ -65,7 +65,7 @@ const dataSlice = createSlice({
       state.evaluationFive = action.payload
       return state
     },
-    setFeedback: (state, action: PayloadAction<string>) => {
+    setFeedbackSlice: (state, action: PayloadAction<string>) => {
       state.feedback = action.payload
       return state
     },
@@ -96,7 +96,7 @@ export const {
   setEvaluationThree,
   setEvaluationFour,
   setEvaluationFive,
-  setFeedback,
+  setFeedbackSlice,
   setPreDeliveryNumber,
   setStudent,
   setIsLoading,
@@ -111,7 +111,7 @@ export const postData = (data: Delivery) => {
   return async (dispatch: AppDispatch) => {
     dispatch(setIsLoading(true))
     try {
-      const resp = await axios.post('url del backed', data)
+      const resp = await axios.post('http://localhost:8080/api/delivery/', data)
       const dataResp = await resp.data
       dispatch(setData(dataResp))
     } catch (error) {

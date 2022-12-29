@@ -1,9 +1,9 @@
-import { Container, Grid, Paper } from '@mui/material'
+import { Button, Container, Grid, Paper } from '@mui/material'
 import { Evaluation, Feedback, Form, Result } from '@/components'
+import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
+import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { jsDeliveryOne } from '@/data'
-import { setPreDeliveryNumber } from '@/redux/slices/dataSlice'
-import { useAppDispatch } from '@/redux'
 import { useEffect } from 'react'
 import { useNote } from '@/hooks'
 
@@ -11,11 +11,19 @@ export interface JsPreDeliveryOneInterface {}
 
 const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
   const dispatch = useAppDispatch()
+  const report = useAppSelector(state => state.dataSlice)
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree } = useNote()
 
   useEffect(() => {
     dispatch(setPreDeliveryNumber(1))
   }, [])
+
+
+  const onHandleSendData = () => { 
+    localStorage.setItem('studentName', '')
+    dispatch(postData(report))
+    
+   }
 
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
@@ -59,6 +67,11 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
         />
         <Result result={result} />
         <Feedback />
+        <Container sx={{ mt: 3, textAlign: 'center' }}>
+          <Button variant='contained' size='large' onClick={onHandleSendData}>
+            Generar informe
+          </Button>
+        </Container>
       </Paper>
     </Container>
   )
