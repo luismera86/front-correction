@@ -1,4 +1,11 @@
-import { HomePage, JavaScriptHomePage, JsPreDeliveryOne, JsPreDeliveryThree, JsPreDeliveryTow } from '@/pages'
+import {
+  HomePage,
+  JavaScriptHomePage,
+  JsPreDeliveryOne,
+  JsPreDeliveryThree,
+  JsPreDeliveryTow,
+  ReportPage,
+} from '@/pages'
 import { Route, Routes } from 'react-router-dom'
 
 import { RouterLayout } from '@/components'
@@ -6,6 +13,7 @@ import { RouterLayout } from '@/components'
 const AppRouter = () => {
   return (
     <Routes>
+      <Route path='/report' element={<ReportPage />} />
       <Route path='/' element={<RouterLayout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/js' element={<JavaScriptHomePage />} />
