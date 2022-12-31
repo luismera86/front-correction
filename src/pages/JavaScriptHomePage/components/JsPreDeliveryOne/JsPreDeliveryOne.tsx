@@ -3,6 +3,7 @@ import { Evaluation, Feedback, Form, Result } from '@/components'
 import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
+import { SloganOne } from '../SloganOne'
 import { jsDeliveryOne } from '@/data'
 import { useEffect } from 'react'
 import { useNote } from '@/hooks'
@@ -29,21 +30,7 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
         <Form />
-        <Container>
-          <Grid container>
-            <Grid item>
-              <h3>Consigna</h3>
-              <p>Comienza a crear la estructura inicial de tu proyecto integrador. Deberás:</p>
-              <p>
-                - Pensar el alcance de tu proyecto: ¿usarás un cotizador de seguros? ¿un simulador de créditos? ¿un
-                simulador personalizado?
-              </p>
-              <p>- Armar la estructura HTML del proyecto.</p>
-              <p>- Incorporar algoritmo condicional y algoritmo con ciclo.</p>
-              <p>- Utilizar funciones para realizar esas operaciones.</p>
-            </Grid>
-          </Grid>
-        </Container>
+        <SloganOne />
         <Evaluation
           evaluationNumber={1}
           title={jsDeliveryOne.evaluationOne.title}

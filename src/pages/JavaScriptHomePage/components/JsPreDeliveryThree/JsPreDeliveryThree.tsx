@@ -3,6 +3,7 @@ import { Evaluation, Feedback, Form } from '@/components'
 import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
+import { SloganThree } from '../SloganThree'
 import { jsDeliveryThree } from '@/data'
 import { useEffect } from 'react'
 import { useNote } from '@/hooks'
@@ -11,9 +12,10 @@ export interface JsPreDeliveryThreeInterface {}
 
 const JsPreDeliveryThree: React.FC<JsPreDeliveryThreeInterface> = () => {
   const dispatch = useAppDispatch()
-  const report = useAppSelector(state => state.dataSlice)
+  const report = useAppSelector((state) => state.dataSlice)
 
-  const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree, evaluationNoteFour, evaluationNoteFive } = useNote()
+  const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree, evaluationNoteFour, evaluationNoteFive } =
+    useNote()
 
   const { evaluationOne, evaluationTow, evaluationThree, evaluationFour, evaluationFive } = jsDeliveryThree
 
@@ -21,44 +23,16 @@ const JsPreDeliveryThree: React.FC<JsPreDeliveryThreeInterface> = () => {
     dispatch(setPreDeliveryNumber(3))
   }, [])
 
-
-  const onHandleSendData = () => { 
+  const onHandleSendData = () => {
     localStorage.setItem('studentName', '')
     dispatch(postData(report))
-    
-   }
+  }
 
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
         <Form />
-        <Container>
-          <Grid container>
-            <Grid item>
-              <h3>Consigna</h3>
-              <p>
-                Deberás agregar y entregar uso de JSON y Storage, y DOM y eventos del usuario, correspondientes a la
-                tercera entrega de tu proyecto final.
-              </p>
-              <p>Objetivos Generales:</p>
-              <p>
-                - Codificar funciones de procesos esenciales y notificación de resultados por HTML, añadiendo
-                interacción al simulador.{' '}
-              </p>
-              <p>
-                - Ampliar y refinar el flujo de trabajo del script en términos de captura de eventos, procesamiento del
-                simulador y notificación de resultados en forma de salidas por HTML, modificando el DOM.
-              </p>
-              <p>Objetivos Específicos:</p>
-              <p>- Definir eventos a manejar y su función de respuesta.</p>
-              <p>
-                - Modificar el DOM, ya sea para definir elementos al cargar la página o para realizar salidas de un
-                procesamiento.
-              </p>
-              <p>- Almacenar datos (clave-valor) en el Storage y recuperarlos.</p>
-            </Grid>
-          </Grid>
-        </Container>
+        <SloganThree />
         <Evaluation
           evaluationNumber={1}
           title={evaluationOne.title}
