@@ -5,6 +5,7 @@ import { AppDispatch } from '../app'
 import axios from 'axios'
 
 const initialState: Delivery = {
+  id: '',
   evaluationOne: {
     comment: '',
     status: '',
@@ -41,6 +42,9 @@ const dataSlice = createSlice({
   name: 'dataSlice',
   initialState,
   reducers: {
+    getDataSlice: (state) => {
+      return state
+    },
     setData: (state, action: PayloadAction<Delivery>) => {
       state = action.payload
       return state
@@ -90,6 +94,7 @@ const dataSlice = createSlice({
 })
 
 export const {
+  getDataSlice,
   setData,
   setEvaluationOne,
   setEvaluationTow,
@@ -126,7 +131,7 @@ export const getData = (id: string) => {
   return async (dispatch: AppDispatch) => {
     dispatch(setIsLoading(true))
     try {
-      const resp = await axios.get(`url backend/${id}`)
+      const resp = await axios.get(`http://localhost:8080/api/delivery/${id}`)
       const dataResp = await resp.data
       dispatch(setData(dataResp))
     } catch (error) {

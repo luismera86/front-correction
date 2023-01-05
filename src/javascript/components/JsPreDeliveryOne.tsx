@@ -3,15 +3,13 @@ import { Evaluation, Feedback, Form, Result } from '@/components'
 import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
-import { SloganOne } from '../SloganOne'
+import { SloganOne } from './SloganOne'
 import { jsDeliveryOne } from '@/data'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useNote } from '@/hooks'
 
-export interface JsPreDeliveryOneInterface {}
-
-const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
+export const JsPreDeliveryOne = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const report = useAppSelector(state => state.dataSlice)
@@ -65,5 +63,3 @@ const JsPreDeliveryOne: React.FC<JsPreDeliveryOneInterface> = () => {
     </Container>
   )
 }
-
-export default JsPreDeliveryOne
