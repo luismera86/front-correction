@@ -4,7 +4,7 @@ import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { SloganOne } from './SloganOne'
-import { jsDeliveryOne } from '@/data'
+import { jsDeliveryOne } from '../data'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useNote } from '@/hooks'

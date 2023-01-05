@@ -4,7 +4,7 @@ import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { SloganTow } from './SloganTow'
-import { jsDeliveryTow } from '@/data'
+import { jsDeliveryTow } from '../data'
 import { useEffect } from 'react'
 import { useNote } from '@/hooks'
 
