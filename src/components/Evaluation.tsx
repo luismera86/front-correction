@@ -15,7 +15,7 @@ import { useCalcPoints, useComments } from '@/hooks'
 
 import { useEffect } from 'react'
 
-export interface EvaluationInterface {
+export interface Props {
   title: string // Título de la evaluación
   evaluation: string // Recibe el texto con los detalles a evaluar
   evaluations: number // Ingresar la cantidad de evaluaciones que se van a realizar, en base a eso determina el puntaje de cada evaluación que realiza
@@ -23,14 +23,15 @@ export interface EvaluationInterface {
   evaluationNumber: number // número de evaluación de la consigna
 }
 
+
 // una función que no retorna nada y pasa por un parámetros paseado el valor del select, que luego es usado en el custom hook useNote
-const Evaluation: React.FC<EvaluationInterface> = ({
+export const Evaluation = ({
   evaluation,
   evaluations,
   evaluationValue,
   title,
   evaluationNumber,
-}) => {
+}: Props) => {
   const dispatch = useAppDispatch()
   const student = useAppSelector((state) => state.dataSlice)
   const { points, clacPoints } = useCalcPoints()
@@ -91,4 +92,3 @@ const Evaluation: React.FC<EvaluationInterface> = ({
   )
 }
 
-export default Evaluation

@@ -2,9 +2,7 @@ import { AppBar, Box, Button, Container, Grid, Stack, Toolbar } from '@mui/mater
 
 import { NavLink } from 'react-router-dom'
 
-export interface NavBarInterface {}
-
-const NavBar: React.FC<NavBarInterface> = () => {
+export const NavBar = () => {
   return (
     <Box>
       <AppBar position='fixed'>
@@ -25,5 +23,3 @@ const NavBar: React.FC<NavBarInterface> = () => {
     </Box>
   )
 }
-
-export default NavBar

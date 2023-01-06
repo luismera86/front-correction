@@ -4,9 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { setStudent } from '@/redux/slices/dataSlice'
 
-export interface FormInterface {}
-
-const Form: React.FC<FormInterface> = () => {
+export const Form = () => {
   const dispatch = useAppDispatch()
   const studentSlice = useAppSelector((state) => state.dataSlice.student)
 
@@ -107,4 +105,3 @@ const Form: React.FC<FormInterface> = () => {
   )
 }
 
-export default Form

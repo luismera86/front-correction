@@ -2,13 +2,13 @@ import { Button, Container, Stack } from '@mui/material'
 
 import { Link } from 'react-router-dom'
 
-export interface PreDeliveryButtonsInterface {
+interface Props {
   linkOne: string
   linkTow: string
   linkThree: string
 }
 // Recibe los links a las pre entregas 
-const PreDeliveryButtons: React.FC<PreDeliveryButtonsInterface> = ({ linkOne, linkTow, linkThree }) => {
+export const PreDeliveryButtons= ({ linkOne, linkTow, linkThree }: Props) => {
   return (
     <Container sx={{ mt: 9, p: 5 }}>
       <Stack direction='column' spacing={3} justifyContent='center' alignItems='center'>
@@ -32,4 +32,4 @@ const PreDeliveryButtons: React.FC<PreDeliveryButtonsInterface> = ({ linkOne, li
   )
 }
 
-export default PreDeliveryButtons
+

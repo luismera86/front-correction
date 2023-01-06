@@ -5,9 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { useFeedback } from '@/hooks'
 
-export interface FeedbackInterface {}
-
-const Feedback: React.FC<FeedbackInterface> = () => {
+export const Feedback = () => {
   const dispatch = useAppDispatch()
   const student = useAppSelector((state) => state.dataSlice)
   const { feedback, calcFeedback, setFeedback } = useFeedback()
@@ -46,4 +44,3 @@ const Feedback: React.FC<FeedbackInterface> = () => {
   )
 }
 
-export default Feedback
