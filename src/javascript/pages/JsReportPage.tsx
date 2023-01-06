@@ -1,13 +1,11 @@
 import { Container, Grid, Paper, Typography } from '@mui/material'
-import { SloganOne, SloganThree, SloganTow } from '../JavaScriptHomePage'
+import { SloganOne, SloganThree, SloganTow } from '../components'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { getDataSlice } from '@/redux/slices/dataSlice'
 import { useEffect } from 'react'
 
-export interface ReportPageInterface {}
-
-const ReportPage: React.FC<ReportPageInterface> = () => {
+export const JsReportPage = () => {
   const dispatch = useAppDispatch()
   const dataSlice = useAppSelector((state) => state.dataSlice)
 
@@ -48,5 +46,3 @@ const ReportPage: React.FC<ReportPageInterface> = () => {
     </Container>
   )
 }
-
-export default ReportPage

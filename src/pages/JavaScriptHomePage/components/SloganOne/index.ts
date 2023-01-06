@@ -1,1 +1,0 @@
-export { default as SloganOne } from './SloganOne';
