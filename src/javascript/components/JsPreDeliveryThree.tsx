@@ -1,8 +1,9 @@
 import { Button, Container, Grid, Paper, Typography } from '@mui/material'
-import { Evaluation, Feedback, Form } from '@/components'
+import { Evaluation, Feedback, Form, Result } from '@/components'
 import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
+import { JsLayout } from '../layout'
 import { SloganThree } from './SloganThree'
 import { jsDeliveryThree } from '../data'
 import { useEffect } from 'react'
@@ -27,10 +28,8 @@ export const JsPreDeliveryThree = () => {
   }
 
   return (
-    <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
-      <Paper elevation={10} sx={{ p: 3 }}>
-        <Form />
-        <SloganThree />
+    <JsLayout>
+      <SloganThree />
         <Evaluation
           evaluationNumber={1}
           title={evaluationOne.title}
@@ -65,17 +64,9 @@ export const JsPreDeliveryThree = () => {
           evaluation={evaluationFive.evaluation}
           evaluations={5}
           evaluationValue={evaluationNoteFive}
-        />
-        <Container sx={{ mb: 3, mt: 2 }}>
-          <Typography variant='h5'>Resultado: {result}</Typography>
-        </Container>
-        <Feedback />
-        <Container sx={{ mt: 3, textAlign: 'center' }}>
-          <Button variant='contained' size='large' onClick={onHandleSendData}>
-            Generar informe
-          </Button>
-        </Container>
-      </Paper>
-    </Container>
+      />
+      <Result result={result} />
+    </JsLayout>
+   
   )
 }

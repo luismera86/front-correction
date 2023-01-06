@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect } from 'react'
-import { Container, Paper, TextField } from '@mui/material'
+import { Container, Paper, TextField, Typography } from '@mui/material'
 import { setData, setFeedbackSlice } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
@@ -38,8 +38,9 @@ const Feedback: React.FC<FeedbackInterface> = () => {
 
   return (
     <Container>
-      <Paper>
-        <TextField label='Feedback' multiline rows={10} value={feedback} onChange={onChangeFeedback} fullWidth />
+      <Paper sx={{p:3}}>
+        <Typography mb={1}>Feedback:</Typography>
+        <Typography>{feedback }</Typography>
       </Paper>
     </Container>
   )

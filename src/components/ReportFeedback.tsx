@@ -7,6 +7,7 @@ export const ReportFeedback = () => {
 
   return (
     <Grid container p={3}>
+      <Typography mb={1}>Feedback:</Typography>
       <Typography>{dataSlice.feedback}</Typography>
     </Grid>
   )

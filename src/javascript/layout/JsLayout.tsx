@@ -1,34 +1,25 @@
-import { Button, Container, Paper } from "@mui/material"
-import { Feedback, Form, Result } from "@/components"
-import { useAppDispatch, useAppSelector } from "@/redux"
+import { Button, Container, Paper } from '@mui/material'
+import { Feedback, Form } from '@/components'
 
-import { postData } from "@/redux/slices/dataSlice"
-import { useNavigate } from "react-router-dom"
-import { useNote } from "@/hooks"
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  children: JSX.Element | JSX.Element[] 
+  children: JSX.Element | JSX.Element[]
 }
 
 export const JsLayout = ({ children }: Props) => {
-
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const report = useAppSelector(state => state.dataSlice)
 
-  const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree, evaluationNoteFour, evaluationNoteFive } = useNote()
-
-  const onHandleSendData = () => { 
+  const onHandleSendData = () => {
     localStorage.setItem('studentName', '')
-    dispatch(postData(report))
     navigate('/js/report')
   }
-  
+
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
         <Form />
-        {/* Aquí van el número de slogan, Evaluations y Result */}
+        {/* Aquí van el número de slogan, Evaluations.tsx y Result.tsx */}
         {children}
 
         <Feedback />
