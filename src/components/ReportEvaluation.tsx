@@ -16,7 +16,8 @@ export const ReportEvaluation = () => {
           <Typography mb={1} fontWeight={700}>
             Estado: {e.status}
           </Typography>
-          <Typography mb={3}>Comentario: {e.comment}</Typography>
+          <Typography mb={1} fontWeight={700}>Comentario:</Typography>         
+          <Typography mb={3}>{e.comment}</Typography>         
           <hr />
         </Grid>
       ))}
