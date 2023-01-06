@@ -3,6 +3,7 @@ export * from './Feedback';
 export * from './Form';
 export * from './NavBar';
 export * from './PreDeliveryButtons';
+export * from './ReportEvaluation';
 export * from './Result';
 export * from './RouterLayout';
 export * from './index';

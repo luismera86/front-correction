@@ -1,13 +1,13 @@
-import { Container, Grid, Paper, Typography } from '@mui/material'
+import { Button, Container, Grid, Paper, Typography } from '@mui/material'
 import { SloganOne, SloganThree, SloganTow } from '../components'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
+import { ReportEvaluation } from '@/components'
 import { getDataSlice } from '@/redux/slices/dataSlice'
+import { saveAs } from 'file-saver'
 import { useEffect } from 'react'
 
-
 export const JsReportPage = () => {
-
   const dispatch = useAppDispatch()
   const dataSlice = useAppSelector((state) => state.dataSlice)
 
@@ -15,6 +15,12 @@ export const JsReportPage = () => {
   useEffect(() => {
     dispatch(getDataSlice())
   }, [])
+
+  const onHandleSaveHtml = () => {
+    const html = document.documentElement.outerHTML
+    const blob = new Blob([html], { type: 'text/html' })
+    saveAs(blob, `${dataSlice.student.name}.html`)
+  }
 
   return (
     <Container sx={{ mt: 9 }}>
@@ -40,10 +46,15 @@ export const JsReportPage = () => {
         ) : (
           <SloganThree />
         )}
-				{/* Evaluaciones individuales con el estado y comentarios */}
-				{/* // TODO hacer un componente que reciba los datos de los comentarios  */}
+        {/* Evaluaciones individuales con el estado y comentarios */}
+        {/* // TODO hacer un componente que reciba los datos de los comentarios, hacer que los comentarios queden en un array  */}
+
+        <ReportEvaluation />
+
         {/* feedback */}
+        <Typography>{dataSlice.feedback}</Typography>
         {/* botón de imprimir o si hay alguna forma de guardar pantalla */}
+        <Button onClick={onHandleSaveHtml}>Guardar</Button>
       </Paper>
     </Container>
   )

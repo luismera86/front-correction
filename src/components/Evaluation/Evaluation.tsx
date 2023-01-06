@@ -48,14 +48,14 @@ const Evaluation: React.FC<EvaluationInterface> = ({
     const value = e.target.value
     setStatus(value)
     clacPoints(evaluations, value)
-    setComments(title, comment, value)
+    setComments(title, comment, value, evaluation)
   }
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value
 
     setComment(value)
-    setComments(title, value, status)
+    setComments(title, value, status, evaluation)
   }
 
   return (

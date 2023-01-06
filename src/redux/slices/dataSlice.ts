@@ -1,4 +1,4 @@
-import { Delivery, Student } from '@/models'
+import { Delivery, Evaluation, Student } from '@/models'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { AppDispatch } from '../app'
@@ -6,26 +6,7 @@ import axios from 'axios'
 
 const initialState: Delivery = {
   id: '',
-  evaluationOne: {
-    comment: '',
-    status: '',
-  },
-  evaluationTow: {
-    comment: '',
-    status: '',
-  },
-  evaluationThree: {
-    comment: '',
-    status: '',
-  },
-  evaluationFour: {
-    comment: '',
-    status: '',
-  },
-  evaluationFive: {
-    comment: '',
-    status: '',
-  },
+  evaluations: [],
   feedback: '',
   student: {
     commission: 0,
@@ -49,24 +30,13 @@ const dataSlice = createSlice({
       state = action.payload
       return state
     },
-    setEvaluationOne: (state, action: PayloadAction<{ comment: string; status: string }>) => {
-      state.evaluationOne = action.payload
-      return state
-    },
-    setEvaluationTow: (state, action: PayloadAction<{ comment: string; status: string }>) => {
-      state.evaluationTow = action.payload
-      return state
-    },
-    setEvaluationThree: (state, action: PayloadAction<{ comment: string; status: string }>) => {
-      state.evaluationThree = action.payload
-      return state
-    },
-    setEvaluationFour: (state, action: PayloadAction<{ comment: string; status: string }>) => {
-      state.evaluationFour = action.payload
-      return state
-    },
-    setEvaluationFive: (state, action: PayloadAction<{ comment: string; status: string }>) => {
-      state.evaluationFive = action.payload
+    setEvaluations: (state, action: PayloadAction<Evaluation>) => {
+      const index = state.evaluations.findIndex(e => e.number === action.payload.number)
+      console.log(index)
+      if (index === -1) {
+        state.evaluations = [...state.evaluations, action.payload]
+      }
+      state.evaluations[index] = action.payload
       return state
     },
     setFeedbackSlice: (state, action: PayloadAction<string>) => {
@@ -96,11 +66,7 @@ const dataSlice = createSlice({
 export const {
   getDataSlice,
   setData,
-  setEvaluationOne,
-  setEvaluationTow,
-  setEvaluationThree,
-  setEvaluationFour,
-  setEvaluationFive,
+  setEvaluations,
   setFeedbackSlice,
   setPreDeliveryNumber,
   setStudent,
