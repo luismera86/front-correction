@@ -5,7 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/redux'
 import { getDataSlice } from '@/redux/slices/dataSlice'
 import { useEffect } from 'react'
 
+
 export const JsReportPage = () => {
+
   const dispatch = useAppDispatch()
   const dataSlice = useAppSelector((state) => state.dataSlice)
 

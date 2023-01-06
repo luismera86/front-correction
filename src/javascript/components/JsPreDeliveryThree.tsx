@@ -4,7 +4,7 @@ import { postData, setPreDeliveryNumber } from '@/redux/slices/dataSlice'
 import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { SloganThree } from './SloganThree'
-import { jsDeliveryThree } from '@/data'
+import { jsDeliveryThree } from '../data'
 import { useEffect } from 'react'
 import { useNote } from '@/hooks'
 
