@@ -1,5 +1,4 @@
 import './index.css'
-import '@material-ui/core/styles'
 
 import { AppRouter } from './router'
 import { BrowserRouter } from 'react-router-dom'
