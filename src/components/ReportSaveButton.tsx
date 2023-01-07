@@ -9,7 +9,7 @@ export const ReportSaveButton = () => {
   const onHandleSaveHtml = () => {
     const html = document.getElementsByTagName('html')[0].outerHTML
     const css = document.getElementsByTagName('style')[0].innerHTML
-    const blob = new Blob([html, css], { type: 'text/html;charset=utf-8' })
+    const blob = new Blob([`<style>${css}</style>${html}`], { type: 'text/html;charset=utf-8' })
     saveAs(
       blob,
       `${dataSlice.student.name} - ${dataSlice.student.course} - ${dataSlice.student.commission} - ${dataSlice.preDeliveryNumber}.html`
