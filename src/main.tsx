@@ -1,4 +1,5 @@
 import './index.css'
+import '@material-ui/core/styles'
 
 import { AppRouter } from './router'
 import { BrowserRouter } from 'react-router-dom'
@@ -11,11 +12,11 @@ import { store } from './redux'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <ThemeConfig>
-        <AppRouter />
-      </ThemeConfig>
+      <BrowserRouter>
+        <ThemeConfig>
+          <AppRouter />
+        </ThemeConfig>
       </BrowserRouter>
-      </Provider>
+    </Provider>
   </React.StrictMode>
 )
