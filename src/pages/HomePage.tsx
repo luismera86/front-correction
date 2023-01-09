@@ -37,7 +37,7 @@ export const HomePage = () => {
             <b>- Generar informe:</b> Al final se muestra el resultado final en base a los cálculos realizados de acuerdo a lo introducido por el corrector, luego un pequeño feedback general que tiene tres variantes de acuerdo a la nota obtenida Optimo, Correcto o Bajo. En la parte inferior se encuentra un botón "Generar informe" el mismo los redirige a una nueva pantalla donde se muestra toda la información de forma ordenada para enviar al alumno.
           </Typography>
           <Typography fontSize={16} mb={1}>
-            <b>- Guardar el informe y enviar:</b> Por último solo queda revisar si todos los datos son correctos y presionar el botón "Guardar" que se encuentra al final del informe lo que hace es guardar un archivo html con el nombre del alumno - curso - comisión - n° de entrega que luego puede ser enviado como archivo adjunto en la plataforma.
+            <b>- Copiar el informe y enviar</b> Por último solo queda revisar si todos los datos son correctos y presionar el botón "Copiar" que se encuentra al final del informe lo que hace es copiar todos los datos del informe como texto plano en el porta papeles y puedes pegar el reporte en la caja de comentarios de la plataforma para enviar al alumno, solo se debe recordar borrar los textos copiar y corregir otra entrega que se encuentran al final. 
             </Typography>
         </Grid>
       </Grid>

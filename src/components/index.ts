@@ -3,6 +3,7 @@ export * from './Feedback';
 export * from './Form';
 export * from './NavBar';
 export * from './PreDeliveryButtons';
+export * from './ReportCopyButton';
 export * from './ReportData';
 export * from './ReportEvaluation';
 export * from './ReportFeedback';

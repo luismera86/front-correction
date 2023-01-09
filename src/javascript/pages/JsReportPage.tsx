@@ -1,18 +1,23 @@
-import { Container, Paper, Typography } from '@mui/material'
-import { ReportData, ReportEvaluation, ReportFeedback, ReportSaveButton } from '@/components'
+import { Button, Container, Paper, Typography } from '@mui/material'
+import { ReportCopyButton, ReportData, ReportEvaluation, ReportFeedback, ReportSaveButton } from '@/components'
 import { SloganOne, SloganThree, SloganTow } from '../components'
 
 import { ThemePalette } from '@/models'
 import { useAppSelector } from '@/redux'
+import { useRef } from 'react'
 
 export const JsReportPage = () => {
   const dataSlice = useAppSelector((state) => state.dataSlice)
 
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  const copyText = () => {
+    navigator.clipboard.writeText(containerRef.current?.innerText!);
+  };
 
 
   return (
-    <Container sx={{ mt: 9 }}>
+    <Container ref={containerRef} sx={{ mt: 9 }}>
       <Paper>
         <Container sx={{ p: 4, textAlign: 'center' }}>
           <Typography variant='h4' fontWeight={700} color={ThemePalette.PRIMARY} >INFORME DE PRE ENTREGA</Typography>
@@ -32,7 +37,8 @@ export const JsReportPage = () => {
         {/* Feedback */}
         <ReportFeedback />
         {/* Botón para guardar el archivo html*/}
-        <ReportSaveButton />
+        {/* <ReportSaveButton /> */}
+        <ReportCopyButton containerRef={containerRef} />
       </Paper>
     </Container>
   )
