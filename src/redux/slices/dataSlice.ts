@@ -32,7 +32,7 @@ const dataSlice = createSlice({
     },
     setEvaluations: (state, action: PayloadAction<Evaluation>) => {
       const index = state.evaluations.findIndex(e => e.number === action.payload.number)
-      console.log(index)
+     
       if (index === -1) {
         state.evaluations = [...state.evaluations, action.payload]
       }

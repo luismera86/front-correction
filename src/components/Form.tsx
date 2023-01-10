@@ -4,10 +4,13 @@ import { useAppDispatch, useAppSelector } from '@/redux'
 
 import { setStudent } from '@/redux/slices/dataSlice'
 
-export const Form = () => {
+interface Props {
+  course: string
+}
+
+export const Form = ({ course }: Props) => {
   const dispatch = useAppDispatch()
   const studentSlice = useAppSelector((state) => state.dataSlice.student)
-
 
   useEffect(() => {
     dispatch(
@@ -16,48 +19,41 @@ export const Form = () => {
         name: localStorage.getItem('studentName')!,
         tutor: localStorage.getItem('tutorName')!,
         commission: Number(localStorage.getItem('commission')!),
-        course: localStorage.getItem('course')!,
+        course,
       })
     )
-   }, [])
+  }, [])
 
-  useEffect(() => {
-    
-  }, [studentSlice]
-  )
+  useEffect(() => {}, [studentSlice])
   const onChangeStudentName = (e: ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem('studentName', e.target.value)
-    dispatch(setStudent({
-      ...studentSlice,
-      name: e.target.value
-    }))
+    dispatch(
+      setStudent({
+        ...studentSlice,
+        name: e.target.value,
+      })
+    )
   }
   const onChangeTutorName = (e: ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem('tutorName', e.target.value)
-    dispatch(setStudent({
-      ...studentSlice,
-      tutor: e.target.value,
-    }))
+    dispatch(
+      setStudent({
+        ...studentSlice,
+        tutor: e.target.value,
+      })
+    )
   }
-  const onChangeCourse = (e: ChangeEvent<HTMLInputElement>) => {
-    localStorage.setItem('course', e.target.value)
-    dispatch(setStudent({
-      ...studentSlice,
-      course: e.target.value
-    }))
-  }
+  
   const onChangeCommission = (e: ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem('commission', e.target.value)
-    dispatch(setStudent({
-      ...studentSlice,
-      commission: Number(e.target.value)
-    }))
+    dispatch(
+      setStudent({
+        ...studentSlice,
+        commission: Number(e.target.value),
+      })
+    )
   }
-  
-  
-  
 
-  
   return (
     <Container>
       <Typography variant='h5'>Datos de la entrega</Typography>
@@ -91,9 +87,8 @@ export const Form = () => {
             variant='outlined'
           />
           <TextField
-            onChange={onChangeCourse}
             name='course'
-            value={localStorage.getItem('course')}
+            value={course}
             type='text'
             label='Curso'
             placeholder='Ingrese el curso como JavaScript, React Js, etc.'
@@ -104,4 +99,3 @@ export const Form = () => {
     </Container>
   )
 }
-

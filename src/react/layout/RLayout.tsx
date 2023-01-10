@@ -18,7 +18,7 @@ export const RLayout = ({ children }: Props) => {
   return (
     <Container sx={{ mt: 9, p: 4 }} maxWidth='lg'>
       <Paper elevation={10} sx={{ p: 3 }}>
-        <Form />
+        <Form course='React'/>
         {/* Aquí van el número de slogan, Evaluations.tsx y Result.tsx */}
         {children}
 

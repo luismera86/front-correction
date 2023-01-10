@@ -1,14 +1,27 @@
 import { Button, Container, Stack } from '@mui/material'
 
+import { useAppSelector } from '@/redux'
 import { useNavigate } from 'react-router-dom'
-import { useRef } from 'react'
 
 interface Props {
   containerRef: React.RefObject<HTMLDivElement>
 }
 
 export const ReportCopyButton = ({ containerRef }: Props) => {
+  const data = useAppSelector((state) => state.dataSlice)
   const navigate = useNavigate()
+
+  const course = data.student.course.toLowerCase()
+  const onClickNavigate = () => {
+    
+    if (course === 'javascript') {
+      navigate('/js')
+    } else if (course === 'react') {
+      navigate('/react')
+    } else {
+      navigate('/')
+    }
+  }
   const copyText = () => {
     navigator.clipboard.writeText(containerRef.current?.innerText!)
   }
@@ -18,7 +31,7 @@ export const ReportCopyButton = ({ containerRef }: Props) => {
         <Button onClick={copyText} variant='contained'>
           Copiar
         </Button>
-        <Button onClick={() => navigate('/')} variant='contained'>
+        <Button onClick={onClickNavigate} variant='contained'>
           Corregir otra entrega
         </Button>
       </Stack>

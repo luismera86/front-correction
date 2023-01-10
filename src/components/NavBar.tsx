@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Container, Grid, Stack, Toolbar } from '@mui/material'
+import { AppBar, Box, Button, Stack, Toolbar } from '@mui/material'
 
 import { NavLink } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ export const NavBar = () => {
               <Button variant='outlined'>JavaScript</Button>
             </NavLink>
             <NavLink style={{ textDecoration: 'none' }} to='/react'>
-              <Button variant='outlined'>React Js</Button>
+              <Button variant='outlined'>React</Button>
             </NavLink>
           </Stack>
         </Toolbar>
