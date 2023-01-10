@@ -1,6 +1,7 @@
+import { PreDeliveryButtons } from "@/components"
 
 export const RHomePage = () => {
   return (
-    <div>RHomePage</div>
-  )
+    <PreDeliveryButtons linkOne='/react/predeliveryone' linkTow='/react/predeliverytow' />
+    )
 }
