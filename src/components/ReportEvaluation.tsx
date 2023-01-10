@@ -6,7 +6,7 @@ export const ReportEvaluation = () => {
   const dataSlice = useAppSelector((state) => state.dataSlice)
 
   return (
-    <Grid container p={3}>
+    <Grid container p={3} flexDirection='column'>
       {dataSlice.evaluations.map((e) => (
         <Grid item>
           <Typography fontSize={20} fontWeight={700} mb={2}>
