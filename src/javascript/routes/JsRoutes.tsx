@@ -1,5 +1,5 @@
 import { JsPreDeliveryOne, JsPreDeliveryThree, JsPreDeliveryTow } from '../components'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { JsHomePage } from '../pages'
 
