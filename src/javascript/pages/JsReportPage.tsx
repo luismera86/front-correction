@@ -1,5 +1,5 @@
-import { Button, Container, Paper, Typography } from '@mui/material'
-import { ReportCopyButton, ReportData, ReportEvaluation, ReportFeedback, ReportSaveButton } from '@/components'
+import { Container, Paper, Typography } from '@mui/material'
+import { ReportCopyButton, ReportData, ReportEvaluation, ReportFeedback } from '@/components'
 import { SloganOne, SloganThree, SloganTow } from '../components'
 
 import { ThemePalette } from '@/models'
@@ -9,18 +9,15 @@ import { useRef } from 'react'
 export const JsReportPage = () => {
   const dataSlice = useAppSelector((state) => state.dataSlice)
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const copyText = () => {
-    navigator.clipboard.writeText(containerRef.current?.innerText!);
-  };
-
+  const containerRef = useRef<HTMLDivElement>(null)
 
   return (
     <Container ref={containerRef} sx={{ mt: 9 }}>
       <Paper>
         <Container sx={{ p: 4, textAlign: 'center' }}>
-          <Typography variant='h4' fontWeight={700} color={ThemePalette.PRIMARY} >INFORME DE PRE ENTREGA</Typography>
+          <Typography variant='h4' fontWeight={700} color={ThemePalette.PRIMARY}>
+            INFORME DE PRE ENTREGA
+          </Typography>
         </Container>
         {/* Datos del formulario y resultado  */}
         <ReportData />
@@ -36,8 +33,7 @@ export const JsReportPage = () => {
         <ReportEvaluation />
         {/* Feedback */}
         <ReportFeedback />
-        {/* Botón para guardar el archivo html*/}
-        {/* <ReportSaveButton /> */}
+        {/* Botón para copiar texto del reporte*/}
         <ReportCopyButton containerRef={containerRef} />
       </Paper>
     </Container>

@@ -7,7 +7,6 @@ export * from './ReportCopyButton';
 export * from './ReportData';
 export * from './ReportEvaluation';
 export * from './ReportFeedback';
-export * from './ReportSaveButton';
 export * from './Result';
 export * from './RouterLayout';
 export * from './index';

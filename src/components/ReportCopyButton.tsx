@@ -18,7 +18,7 @@ export const ReportCopyButton = ({ containerRef }: Props) => {
         <Button onClick={copyText} variant='contained'>
           Copiar
         </Button>
-        <Button onClick={() => navigate('/js')} variant='contained'>
+        <Button onClick={() => navigate('/')} variant='contained'>
           Corregir otra entrega
         </Button>
       </Stack>
