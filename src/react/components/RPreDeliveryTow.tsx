@@ -13,7 +13,7 @@ export const RPreDeliveryTow = () => {
   const { result, evaluationNoteOne, evaluationNoteTow, evaluationNoteThree, evaluationNoteFour, evaluationNoteFive } = useNote()
 
   useEffect(() => {
-    dispatch(setPreDeliveryNumber(1))
+    dispatch(setPreDeliveryNumber(2))
   }, [])
   const {evaluationOne, evaluationTow, evaluationThree, evaluationFour, evaluationFive} = rDeliveryTow
   return (
